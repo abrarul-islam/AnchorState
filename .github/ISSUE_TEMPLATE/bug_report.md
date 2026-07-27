@@ -1,7 +1,7 @@
 ---
 
 name: Bug Report
-about: Report a bug or unexpected behavior in CloudGuard
+about: Report a bug or unexpected behavior in AnchorState
 title: "[Bug] "
 labels: bug
 -----------
@@ -26,7 +26,7 @@ What actually happened?
 
 ## Environment
 
-* CloudGuard Version:
+* AnchorState Version:
 * Kubernetes Version:
 * Operating System:
 * Go Version (if applicable):
