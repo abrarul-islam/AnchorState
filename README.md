@@ -391,7 +391,7 @@ CloudGuard will include:
 Security issues should not be publicly disclosed.
 
 If you discover a vulnerability in CloudGuard, please follow the responsible disclosure process described in:
-SECURITY.md
+[SECURITY.md](https://github.com/abrarul-islam/CloudGuard/blob/main/SECURITY.md)
 
 Please do not disclose vulnerabilities publicly before they have been reviewed.
 
@@ -408,7 +408,6 @@ Before contributing, please review:
 - Development guidelines
 - Repository standards
 - Code of conduct
-
 ---
 
 # License
@@ -416,7 +415,7 @@ Before contributing, please review:
 CloudGuard is released under the MIT License.
 
 See:
-LICENSE
+[LICENSE](https://github.com/abrarul-islam/CloudGuard/blob/main/LICENSE)
 
 for details.
 
