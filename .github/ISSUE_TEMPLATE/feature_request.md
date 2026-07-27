@@ -1,7 +1,7 @@
 ---
 
 name: Feature Request
-about: Suggest an enhancement or new capability for CloudGuard
+about: Suggest an enhancement or new capability for AnchorState
 title: "[Feature] "
 labels: enhancement
 -------------------
