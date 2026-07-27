@@ -403,7 +403,7 @@ CloudGuard is currently in early development.
 
 Bug reports, documentation improvements, discussions, and well-scoped pull requests are welcome.
 
-Please read the project's CONTRIBUTING.md before opening an issue or submitting a pull request.
+Please read the project's [CONTRIBUTING](https://github.com/abrarul-islam/CloudGuard/blob/main/CONTRIBUTING.md) before opening an issue or submitting a pull request.
 
 ---
 
