@@ -41,7 +41,7 @@ AnchorState focuses on this gap.
 
 ---
 
-# Why CloudGuard Exists
+# Why AnchorState Exists
 
 Cloud infrastructure is dynamic by design.
 
