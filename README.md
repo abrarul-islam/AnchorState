@@ -1,205 +1,413 @@
 # CloudGuard
 
-> **CloudGuard is an open-source cloud-native security platform that continuously detects and analyzes runtime security drift across Kubernetes and cloud infrastructure.**
+> **CloudGuard is an open-source runtime trust verification engine for Kubernetes and cloud-native infrastructure.**
 
-Cloud-native infrastructure changes constantly. While GitOps tools help maintain the desired infrastructure state, runtime changes, manual modifications, and unauthorized configuration drift can still introduce security risks that are difficult to detect.
+Cloud-native environments are constantly changing.
 
-CloudGuard aims to provide continuous runtime verification for cloud-native environments by monitoring critical resources, detecting security drift, and helping engineering teams maintain their intended secure state.
+Kubernetes controllers, GitOps pipelines, CI/CD systems, infrastructure automation, cloud APIs, and administrators continuously modify running systems.
 
-> **Status:** 🚧 Early Development (v0.1 Alpha)
+While existing tools help teams deploy, scan, and manage infrastructure, a fundamental security question remains:
+
+> **Does the running environment still match the secure state that was intended?**
+
+CloudGuard helps engineering teams detect runtime security drift, preserve evidence of unexpected changes, and maintain confidence in cloud-native environments.
+
+**Status:** 🚧 Early Development (v0.1 Alpha)
+
+---
+
+# Problem
+
+Modern cloud environments have multiple sources of truth:
+
+- Git repositories
+- Infrastructure-as-Code
+- Kubernetes API state
+- Cloud provider resources
+- Runtime application configuration
+
+Over time, these states can diverge.
+
+Examples:
+
+- A Kubernetes Secret is modified manually in production.
+- A privileged user changes infrastructure outside approved workflows.
+- A compromised account alters runtime resources.
+- An automation system introduces unexpected configuration changes.
+
+Traditional deployment systems can confirm that an application was deployed successfully, but they do not always continuously verify whether the running environment still matches the intended secure state.
+
+CloudGuard focuses on this gap.
 
 ---
 
 # Why CloudGuard Exists
 
-Modern cloud environments are highly dynamic.
+Cloud infrastructure is dynamic by design.
 
-Infrastructure is updated through GitOps pipelines, automation, CI/CD systems, operators, and occasionally manual intervention. Although these workflows improve consistency, they cannot always detect unauthorized runtime modifications or security drift occurring after deployment.
+Modern teams rely on:
 
-CloudGuard is being built to help answer an important question:
+- GitOps workflows
+- Infrastructure-as-Code
+- CI/CD pipelines
+- Kubernetes operators
+- Cloud provider APIs
+- Automation platforms
 
-> **Does my running environment still match the secure state I intended to deploy?**
+These systems improve reliability, but they introduce a challenge:
 
-Rather than replacing existing cloud security tools, CloudGuard complements them by providing continuous runtime verification.
+A resource can change after deployment without immediately being identified as unexpected.
+
+CloudGuard asks:
+
+> **Was this change expected, approved, and traceable?**
 
 ---
 
 # Vision
 
-Build an open-source cloud-native security platform that helps engineers continuously verify, understand, and respond to runtime security drift across Kubernetes and cloud infrastructure.
+Build an open-source platform that continuously verifies trust in cloud-native infrastructure by connecting:
+```mermaid
+flowchart TD
+    A["Intended State<br/>(Git, Terraform, Policies)"]
+    B["Trust Baseline"]
+    C["Observed State<br/>(Kubernetes, Cloud Resources)"]
+    D["Trust Verification Engine"]
+    E["Evidence & Response"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+```
+
+CloudGuard does not aim to replace existing security tools.
+
+Instead, it focuses on the gap between:
+
+**what engineers intended to run**
+
+and
+
+**what is actually running.**
 
 ---
 
-# Core Capability
+# Trust Model
 
-CloudGuard continuously verifies that running cloud-native environments remain aligned with their intended secure state.
+CloudGuard defines trust as:
 
-The first implementation focuses on **runtime security drift detection for Kubernetes Secrets**.
+> A runtime environment is trusted when its observed state matches an approved security baseline.
 
----
+Trust evaluation considers:
 
-# Problem Statement
+- Expected state
+- Observed state
+- Security policies
+- Change context
+- Evidence history
 
-Configuration drift, manual infrastructure changes, compromised credentials, and runtime modifications can introduce security risks that traditional deployment workflows may not immediately detect.
+CloudGuard is designed around the principle:
 
-CloudGuard continuously observes cloud-native environments, identifies unauthorized runtime security drift, and produces actionable security events that help engineering teams investigate and respond more quickly.
-
----
-
-# Target Users
-
-### Primary
-
-* Cloud Security Engineers
-* DevSecOps Engineers
-* Platform Engineers
-* Site Reliability Engineers
-* Kubernetes Platform Teams
-
-### Secondary
-
-* Security Researchers
-* Students learning cloud security
-* Open-source contributors
-* Engineering teams exploring cloud-native security
+> Detect first. Understand second. Respond carefully.
 
 ---
 
-# Version 0.1 Alpha Scope
+# Current Focus
 
-The first release intentionally focuses on a single problem.
+CloudGuard v0.1 focuses on one specific problem:
+
+## Kubernetes Runtime Security Drift Detection
+
+The first capability:
+
+> Detect unauthorized modifications to Kubernetes Secrets.
+
+The objective is not to immediately build a massive security platform.
+
+The objective is to build one security capability correctly, validate the engineering approach, and expand based on real security needs.
+
+---
+
+# v0.1 Alpha Capabilities
 
 CloudGuard Alpha will:
 
-* Watch Kubernetes Secrets
-* Compute deterministic hashes of Secret data
-* Detect unauthorized runtime modifications
-* Generate structured security events
-* Record observations
-* Produce security logs
-* Provide a local Kubernetes demonstration environment
-
-The objective is to build one capability well before expanding the platform.
+- Monitor Kubernetes Secrets
+- Generate deterministic fingerprints
+- Detect runtime modifications
+- Identify unexpected state changes
+- Produce structured security events
+- Preserve security evidence
+- Provide reproducible local demonstration environments
+- Support security testing scenarios
 
 ---
 
-# Non-Goals (v0.1 Alpha)
+# Non-Goals
 
 CloudGuard Alpha will **not**:
 
-* Scan AWS accounts
-* Scan Azure environments
-* Scan Google Cloud
-* Replace GitOps platforms
-* Replace SIEM solutions
-* Replace vulnerability scanners
-* Provide compliance reporting
-* Include AI-powered analysis
-* Support multi-cluster deployments
-* Become a full CNAPP platform
+- Replace GitOps platforms
+- Replace SIEM systems
+- Replace vulnerability scanners
+- Provide full CNAPP functionality
+- Scan every cloud provider
+- Provide compliance automation
+- Automatically remediate production systems without explicit configuration
 
-Keeping the initial scope deliberately small allows the project to mature through incremental, well-tested improvements.
+Keeping the initial scope narrow allows CloudGuard to mature through reliable engineering rather than uncontrolled feature growth.
 
 ---
 
-# High-Level Architecture
+# Relationship With Existing Tools
+
+CloudGuard complements existing cloud security tooling.
+
+GitOps platforms answer:
+
+> "Is the deployed state synchronized with the desired state?"
+
+CloudGuard asks:
+
+> "Has the runtime environment changed after deployment?"
+
+Example:
+Git:
+database-secret = version 1
+Production Runtime:
+database-secret = version 2
+GitOps Status:
+Healthy
+CloudGuard:
+Runtime drift detected
+
+CloudGuard is designed to provide an additional layer of runtime verification.
+
+---
+
+# Architecture
 
 CloudGuard follows a modular architecture.
 
-```text
-Kubernetes Cluster
-        │
-        ▼
- Resource Watchers
-        │
-        ▼
- Detection Engine
-        │
-        ▼
- Drift Analysis
-        │
-        ▼
- Security Events
-        │
-        ▼
- Logging / Integrations
+Current architecture:
+```mermaid
+flowchart TD
+    A["Kubernetes Cluster"]
+    B["Resource Collectors"]
+    C["State Normalization"]
+    D["Trust Verification Engine"]
+    E["Drift Detection"]
+    F["Security Evidence"]
+    G["Logging / Integrations / Response"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
 ```
 
-Each component is designed to evolve independently while maintaining a simple overall architecture.
+The architecture is designed to evolve into additional cloud-native trust verification capabilities while maintaining clear separation of responsibilities.
 
 ---
 
-# Roadmap
+# Security Model
 
-### Phase 1 — Foundation
+CloudGuard assumes:
 
-* Repository setup
-* Development environment
-* Project architecture
-* Initial documentation
+- Runtime environments can change after deployment.
+- Not every change is malicious.
+- Security decisions require context and evidence.
+- Detection should operate independently from deployment workflows.
 
-### Phase 2 — Kubernetes Runtime Detection
+CloudGuard does not assume:
 
-* Secret watcher
-* Hash verification
-* Drift detection
-* Structured logging
-
-### Phase 3 — Security Workflows
-
-* Attack simulations
-* Testing framework
-* Metrics
-* CI/CD
-
-### Phase 4 — Platform Expansion
-
-Future versions may expand into additional runtime verification capabilities across Kubernetes and cloud infrastructure while maintaining the project's modular architecture.
+- Git is always the only source of truth.
+- Administrators are always trusted.
+- Runtime state is always correct.
 
 ---
 
 # Technology Stack
 
-Current technologies include:
+## Current
 
-* Go
-* Kubernetes
-* Docker
-* GitHub Actions
-* Terraform (planned)
-* AWS (planned)
+- Go
+- Kubernetes
+- Docker
+- GitHub Actions
 
-The stack will evolve as the project matures.
+## Planned
 
----
+- Terraform
+- AWS
+- Cloud provider APIs
+- OpenTelemetry
+- Prometheus metrics
 
-# Project Principles
-
-CloudGuard is guided by several engineering principles:
-
-* Security first
-* Simplicity over unnecessary complexity
-* Incremental development
-* Modular architecture
-* Evidence-driven engineering
-* Open-source collaboration
-* High-quality documentation
+The technology stack will evolve as the project matures.
 
 ---
 
-# Contributing
+# Development Roadmap
 
-CloudGuard is in its early stages, but contributions, ideas, issue reports, and constructive feedback are welcome.
+## Phase 1 — Foundation
 
-Please read the project's contribution guidelines before submitting pull requests.
+- Repository architecture
+- Development environment
+- Documentation
+- Engineering standards
+
+## Phase 2 — Kubernetes Runtime Detection
+
+- Kubernetes controller
+- Secret monitoring
+- Deterministic hashing
+- Drift detection
+- Security event generation
+
+## Phase 3 — Security Engineering
+
+- Attack simulations
+- Automated testing
+- Metrics
+- CI/CD pipelines
+- Security documentation
+
+## Phase 4 — Platform Expansion
+
+Future capabilities will be driven by:
+
+- Real engineering needs
+- User feedback
+- Validated security problems
+
+Potential areas of exploration:
+
+- Additional Kubernetes resources
+- Cloud provider integrations
+- Infrastructure drift analysis
+- Policy evaluation
+- Security workflow integrations
+
+---
+
+# Engineering Principles
+
+CloudGuard follows these principles:
+
+## Security First
+
+Security tools must be designed with security as the foundation.
+
+## Simplicity Over Complexity
+
+A smaller reliable system is better than a large unreliable one.
+
+## Modular Architecture
+
+Components should evolve independently with clear responsibilities.
+
+## Evidence-Driven Engineering
+
+Security decisions should be explainable, traceable, and reproducible.
+
+## Open Development
+
+Design decisions, challenges, failures, and lessons learned are documented publicly.
+
+---
+
+# Repository Structure
+
+The repository follows a separation-of-concerns approach.
+
+Example:
+cloudguard/
+├── cmd/
+
+├── internal/
+
+├── api/
+
+├── config/
+
+├── deploy/
+
+├── tests/
+
+├── docs/
+
+├── scripts/
+
+└── README.md
+
+The structure will evolve as functionality is implemented.
+
+---
+
+# Local Development
+
+CloudGuard is developed using:
+
+- Linux environments
+- Kubernetes local clusters
+- Docker containers
+- Infrastructure-as-Code workflows
+
+Development documentation will be added as the first functional components are completed.
+
+---
+
+# Demo
+
+Coming soon.
+
+Planned demonstration:
+
+1. Deploy a Kubernetes application
+2. Establish a trusted security baseline
+3. Modify a protected resource
+4. Detect runtime drift
+5. Generate a security event
+
+---
+
+# Testing
+
+CloudGuard will include:
+
+- Unit tests
+- Kubernetes integration tests
+- Security attack simulations
+- Reproducible local validation environments
 
 ---
 
 # Security
 
-If you discover a security vulnerability related to CloudGuard itself, please follow the reporting process described in **SECURITY.md**.
+Security issues should not be publicly disclosed.
 
-Please do **not** disclose vulnerabilities publicly before they have been reviewed.
+If you discover a vulnerability in CloudGuard, please follow the responsible disclosure process described in:
+SECURITY.md
+
+Please do not disclose vulnerabilities publicly before they have been reviewed.
+
+---
+
+# Contributing
+
+CloudGuard is currently in early development.
+
+Contributions, discussions, ideas, and feedback are welcome as the project grows.
+
+Before contributing, please review:
+
+- Development guidelines
+- Repository standards
+- Code of conduct
 
 ---
 
@@ -207,14 +415,23 @@ Please do **not** disclose vulnerabilities publicly before they have been review
 
 CloudGuard is released under the MIT License.
 
-See the **LICENSE** file for details.
+See:
+LICENSE
+
+for details.
 
 ---
 
-## Building in Public
+# Building in Public
 
-CloudGuard is being developed publicly from day one.
+CloudGuard is being developed openly.
 
-The goal is not only to build useful software, but also to document the engineering process, architectural decisions, lessons learned, and technical challenges encountered along the way.
+The goal is not only to create software, but also to document the engineering process:
 
-If you're interested in cloud-native security, Kubernetes, or DevSecOps, feel free to follow the project's progress and contribute.
+- Architecture decisions
+- Implementation challenges
+- Security research
+- Technical lessons
+- Failures and improvements
+
+CloudGuard is built on the belief that strong security engineering comes from continuous learning, transparency, and disciplined execution.
