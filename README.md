@@ -325,7 +325,7 @@ Design decisions, challenges, failures, and lessons learned are documented publi
 The repository follows a separation-of-concerns approach.
 
 Example:
-cloudguard/
+AnchorState/
 ├── cmd/
 
 ├── internal/
