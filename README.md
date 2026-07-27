@@ -401,13 +401,9 @@ Please do not disclose vulnerabilities publicly before they have been reviewed.
 
 CloudGuard is currently in early development.
 
-Contributions, discussions, ideas, and feedback are welcome as the project grows.
+Bug reports, documentation improvements, discussions, and well-scoped pull requests are welcome.
 
-Before contributing, please review:
-
-- Development guidelines
-- Repository standards
-- Code of conduct
+Please read the project's CONTRIBUTING.md before opening an issue or submitting a pull request.
 ---
 
 # License
