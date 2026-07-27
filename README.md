@@ -404,6 +404,7 @@ CloudGuard is currently in early development.
 Bug reports, documentation improvements, discussions, and well-scoped pull requests are welcome.
 
 Please read the project's CONTRIBUTING.md before opening an issue or submitting a pull request.
+
 ---
 
 # License
