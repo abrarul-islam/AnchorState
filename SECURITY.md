@@ -77,8 +77,8 @@ We appreciate researchers who help improve AnchorState's security.
 This policy applies to vulnerabilities affecting:
 
 - AnchorState source code
-- CloudGuard components
-- CloudGuard deployment configurations
-- CloudGuard security mechanisms
+- AnchorState components
+- AnchorState deployment configurations
+- AnchorState security mechanisms
 
-Issues unrelated to CloudGuard itself, such as vulnerabilities in Kubernetes, cloud providers, or third-party dependencies, should be reported to the appropriate maintainers.
+Issues unrelated to AnchorState itself, such as vulnerabilities in Kubernetes, cloud providers, or third-party dependencies, should be reported to the appropriate maintainers.
