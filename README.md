@@ -1,6 +1,6 @@
-# CloudGuard
+# AnchorState
 
-> **CloudGuard is an open-source runtime trust verification engine for Kubernetes and cloud-native infrastructure.**
+> **AnchorState is an open-source runtime trust verification engine for Kubernetes and cloud-native infrastructure.**
 
 Cloud-native environments are constantly changing.
 
@@ -10,7 +10,7 @@ While existing tools help teams deploy, scan, and manage infrastructure, a funda
 
 > **Does the running environment still match the secure state that was intended?**
 
-CloudGuard helps engineering teams detect runtime security drift, preserve evidence of unexpected changes, and maintain confidence in cloud-native environments.
+AnchorState helps engineering teams detect runtime security drift, preserve evidence of unexpected changes, and maintain confidence in cloud-native environments.
 
 **Status:** 🚧 Early Development (v0.1 Alpha)
 
@@ -37,7 +37,7 @@ Examples:
 
 Traditional deployment systems can confirm that an application was deployed successfully, but they do not always continuously verify whether the running environment still matches the intended secure state.
 
-CloudGuard focuses on this gap.
+AnchorState focuses on this gap.
 
 ---
 
@@ -58,7 +58,7 @@ These systems improve reliability, but they introduce a challenge:
 
 A resource can change after deployment without immediately being identified as unexpected.
 
-CloudGuard asks:
+AnchorState asks:
 
 > **Was this change expected, approved, and traceable?**
 
@@ -81,7 +81,7 @@ flowchart TD
     D --> E
 ```
 
-CloudGuard does not aim to replace existing security tools.
+AnchorState does not aim to replace existing security tools.
 
 Instead, it focuses on the gap between:
 
@@ -95,7 +95,7 @@ and
 
 # Trust Model
 
-CloudGuard defines trust as:
+AnchorState defines trust as:
 
 > A runtime environment is trusted when its observed state matches an approved security baseline.
 
@@ -107,7 +107,7 @@ Trust evaluation considers:
 - Change context
 - Evidence history
 
-CloudGuard is designed around the principle:
+AnchorState is designed around the principle:
 
 > Detect first. Understand second. Respond carefully.
 
@@ -115,7 +115,7 @@ CloudGuard is designed around the principle:
 
 # Current Focus
 
-CloudGuard v0.1 focuses on one specific problem:
+AnchorState v0.1 focuses on one specific problem:
 
 ## Kubernetes Runtime Security Drift Detection
 
@@ -131,7 +131,7 @@ The objective is to build one security capability correctly, validate the engine
 
 # v0.1 Alpha Capabilities
 
-CloudGuard Alpha will:
+AnchorState Alpha will:
 
 - Monitor Kubernetes Secrets
 - Generate deterministic fingerprints
@@ -146,7 +146,7 @@ CloudGuard Alpha will:
 
 # Non-Goals
 
-CloudGuard Alpha will **not**:
+AnchorState Alpha will **not**:
 
 - Replace GitOps platforms
 - Replace SIEM systems
@@ -156,19 +156,19 @@ CloudGuard Alpha will **not**:
 - Provide compliance automation
 - Automatically remediate production systems without explicit configuration
 
-Keeping the initial scope narrow allows CloudGuard to mature through reliable engineering rather than uncontrolled feature growth.
+Keeping the initial scope narrow allows AnchorState to mature through reliable engineering rather than uncontrolled feature growth.
 
 ---
 
 # Relationship With Existing Tools
 
-CloudGuard complements existing cloud security tooling.
+AnchorState complements existing cloud security tooling.
 
 GitOps platforms answer:
 
 > "Is the deployed state synchronized with the desired state?"
 
-CloudGuard asks:
+AnchorState asks:
 
 > "Has the runtime environment changed after deployment?"
 
@@ -179,16 +179,16 @@ Production Runtime:
 database-secret = version 2
 GitOps Status:
 Healthy
-CloudGuard:
+AnchorState:
 Runtime drift detected
 
-CloudGuard is designed to provide an additional layer of runtime verification.
+AnchorState is designed to provide an additional layer of runtime verification.
 
 ---
 
 # Architecture
 
-CloudGuard follows a modular architecture.
+AnchorState follows a modular architecture.
 
 Current architecture:
 ```mermaid
@@ -215,14 +215,14 @@ The architecture is designed to evolve into additional cloud-native trust verifi
 
 # Security Model
 
-CloudGuard assumes:
+AnchorState assumes:
 
 - Runtime environments can change after deployment.
 - Not every change is malicious.
 - Security decisions require context and evidence.
 - Detection should operate independently from deployment workflows.
 
-CloudGuard does not assume:
+AnchorState does not assume:
 
 - Git is always the only source of truth.
 - Administrators are always trusted.
@@ -296,7 +296,7 @@ Potential areas of exploration:
 
 # Engineering Principles
 
-CloudGuard follows these principles:
+AnchorState follows these principles:
 
 ## Security First
 
@@ -350,7 +350,7 @@ The structure will evolve as functionality is implemented.
 
 # Local Development
 
-CloudGuard is developed using:
+AnchorState is developed using:
 
 - Linux environments
 - Kubernetes local clusters
@@ -377,7 +377,7 @@ Planned demonstration:
 
 # Testing
 
-CloudGuard will include:
+AnchorState will include:
 
 - Unit tests
 - Kubernetes integration tests
@@ -390,7 +390,7 @@ CloudGuard will include:
 
 Security issues should not be publicly disclosed.
 
-If you discover a vulnerability in CloudGuard, please follow the responsible disclosure process described in:
+If you discover a vulnerability in AnchorState, please follow the responsible disclosure process described in:
 [SECURITY.md](https://github.com/abrarul-islam/CloudGuard/blob/main/SECURITY.md)
 
 Please do not disclose vulnerabilities publicly before they have been reviewed.
@@ -399,20 +399,20 @@ Please do not disclose vulnerabilities publicly before they have been reviewed.
 
 # Contributing
 
-CloudGuard is currently in early development.
+AnchorState is currently in early development.
 
 Bug reports, documentation improvements, discussions, and well-scoped pull requests are welcome.
 
-Please read the project's [CONTRIBUTING](https://github.com/abrarul-islam/CloudGuard/blob/main/CONTRIBUTING.md) before opening an issue or submitting a pull request.
+Please read the project's [CONTRIBUTING](https://github.com/abrarul-islam/AnchorState/blob/main/CONTRIBUTING.md) before opening an issue or submitting a pull request.
 
 ---
 
 # License
 
-CloudGuard is released under the MIT License.
+AnchorState is released under the MIT License.
 
 See:
-[LICENSE](https://github.com/abrarul-islam/CloudGuard/blob/main/LICENSE)
+[LICENSE](https://github.com/abrarul-islam/AnchorState/blob/main/LICENSE)
 
 for details.
 
@@ -420,7 +420,7 @@ for details.
 
 # Building in Public
 
-CloudGuard is being developed openly.
+AnchorState is being developed openly.
 
 The goal is not only to create software, but also to document the engineering process:
 
@@ -430,4 +430,4 @@ The goal is not only to create software, but also to document the engineering pr
 - Technical lessons
 - Failures and improvements
 
-CloudGuard is built on the belief that strong security engineering comes from continuous learning, transparency, and disciplined execution.
+AnchorState is built on the belief that strong security engineering comes from continuous learning, transparency, and disciplined execution.
