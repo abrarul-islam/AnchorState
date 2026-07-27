@@ -100,7 +100,7 @@ Community contributions are encouraged, while the project's architecture, long-t
 
 Please do **not** publicly disclose security vulnerabilities.
 
-If you discover a security issue in CloudGuard itself, follow the responsible disclosure process described in **SECURITY.md**.
+If you discover a security issue in CloudGuard itself, follow the responsible disclosure process described in **[SECURITY.md](https://github.com/abrarul-islam/CloudGuard/blob/main/SECURITY.md)**.
 
 ## Thank You
 
