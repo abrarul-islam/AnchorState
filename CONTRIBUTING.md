@@ -1,8 +1,8 @@
-# Contributing to CloudGuard
+# Contributing to AnchorState
 
-Thank you for your interest in contributing to CloudGuard.
+Thank you for your interest in contributing to AnchorState.
 
-CloudGuard is an open-source, founder-led project focused on runtime trust verification for Kubernetes and cloud-native infrastructure. The project is in its early stages, and contributions are appreciated as it continues to evolve.
+AnchorState is an open-source, founder-led project focused on runtime trust verification for Kubernetes and cloud-native infrastructure. The project is in its early stages, and contributions are appreciated as it continues to evolve.
 
 ## Ways to Contribute
 
@@ -34,9 +34,9 @@ Small bug fixes, documentation improvements, and minor enhancements generally do
 6. Submit a pull request.
 
 ## Local Development Setup
-To build and test CloudGuard locally:
+To build and test AnchorState locally:
 1. Ensure you have Go 1.22+ installed.
-2. Clone your fork: `git clone https://github.com/abrarul-islam/CloudGuard.git`
+2. Clone your fork: `git clone https://github.com/abrarul-islam/AnchorState.git`
 3. Download dependencies: `go mod download`
 4. Run the test suite: `go test ./...`
 *(Note: Full Kubernetes local-cluster testing requirements using Kind/Minikube will be added as the controller architecture matures).*
@@ -67,7 +67,7 @@ When contributing, please aim to:
 
 ## Commit Messages
 
-CloudGuard follows the Conventional Commits specification.
+AnchorState follows the Conventional Commits specification.
 
 Examples:
 
@@ -92,7 +92,7 @@ Pull requests may receive review comments before being merged.
 
 ## Project Direction
 
-CloudGuard is currently maintained as a founder-led open-source project.
+AnchorState is currently maintained as a founder-led open-source project.
 
 Community contributions are encouraged, while the project's architecture, long-term vision, and core security model are intentionally guided by the primary maintainer to ensure consistency as the platform evolves.
 
@@ -100,9 +100,9 @@ Community contributions are encouraged, while the project's architecture, long-t
 
 Please do **not** publicly disclose security vulnerabilities.
 
-If you discover a security issue in CloudGuard itself, follow the responsible disclosure process described in **[SECURITY.md](https://github.com/abrarul-islam/CloudGuard/blob/main/SECURITY.md)**.
+If you discover a security issue in AnchorState itself, follow the responsible disclosure process described in **[SECURITY.md](https://github.com/abrarul-islam/AnchorState/blob/main/SECURITY.md)**.
 
 ## Thank You
 
-Every contribution—whether it's code, documentation, testing, or feedback—helps improve CloudGuard and is genuinely appreciated.
+Every contribution—whether it's code, documentation, testing, or feedback—helps improve AnchorState and is genuinely appreciated.
 
