@@ -1,6 +1,6 @@
 # Security Policy
 
-CloudGuard is a security-focused open-source project designed to help engineering teams detect runtime security drift in cloud-native environments.
+AnchorState is a security-focused open-source project designed to help engineering teams detect runtime security drift in cloud-native environments.
 
 Security is a core principle of the project. We appreciate security researchers and contributors who responsibly report vulnerabilities.
 
@@ -24,7 +24,7 @@ Please include:
 
 - Description of the vulnerability
 - Affected component or module
-- CloudGuard version
+- AnchorState version
 - Kubernetes version and environment details (if applicable)
 - Steps to reproduce
 - Proof-of-concept or relevant logs (if available)
@@ -68,7 +68,7 @@ We encourage responsible security research.
 
 Please allow reasonable time for investigation and remediation before publicly disclosing vulnerabilities.
 
-We appreciate researchers who help improve CloudGuard's security.
+We appreciate researchers who help improve AnchorState's security.
 
 ---
 
@@ -76,7 +76,7 @@ We appreciate researchers who help improve CloudGuard's security.
 
 This policy applies to vulnerabilities affecting:
 
-- CloudGuard source code
+- AnchorState source code
 - CloudGuard components
 - CloudGuard deployment configurations
 - CloudGuard security mechanisms
