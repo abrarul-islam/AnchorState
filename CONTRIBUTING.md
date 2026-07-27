@@ -42,7 +42,7 @@ To build and test AnchorState locally:
 *(Note: Full Kubernetes local-cluster testing requirements using Kind/Minikube will be added as the controller architecture matures).*
 
 ## Developer Certificate of Origin (DCO)
-To legally accept your contributions, CloudGuard requires all commits to be signed off, adhering to the Developer Certificate of Origin (DCO). 
+To legally accept your contributions, AnchorState requires all commits to be signed off, adhering to the Developer Certificate of Origin (DCO). 
 
 This is a simple statement that you wrote the contribution or have the right to contribute it under the open-source license.
 
