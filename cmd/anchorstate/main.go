@@ -2,51 +2,40 @@ package main
 
 import (
 	"context"
-	"log/slog"
+	"fmt"
 	"os"
 	"os/signal"
 	"syscall"
-	"time"
 
+	"github.com/abrarul-islam/AnchorState/internal/config"
+	"github.com/abrarul-islam/AnchorState/internal/logger"
 	"github.com/abrarul-islam/AnchorState/internal/version"
-	"github.com/abrarul-islam/AnchorState/pkg/logger"
 )
 
 func main() {
-	// Initialize structured JSON logging (default level: INFO)
-	log := logger.SetupLogger("info")
-
-	log.Info("starting runtime trust engine",
-		slog.String("app", version.Name),
-		slog.String("version", version.Version),
-	)
-
-	// Context listening for OS interrupt signals (Ctrl+C / SIGTERM)
-	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
-	defer cancel()
-
-	if err := run(ctx, log); err != nil {
-		log.Error("fatal application error", slog.String("error", err.Error()))
+	// 1. Load application configuration from environment
+	cfg, err := config.Load()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "failed to load configuration: %v\n", err)
 		os.Exit(1)
 	}
 
-	log.Info("AnchorState shut down gracefully")
-}
+	// 2. Initialize logger with configured log level
+	log := logger.SetupLogger(cfg.LogLevel)
 
-func run(ctx context.Context, log *slog.Logger) error {
-	log.Info("initializing secret drift monitoring engine...")
+	// 3. Set up OS signal listening for graceful shutdown (Ctrl+C / SIGTERM)
+	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+	defer stop()
 
-	// Simulate background watcher startup
-	select {
-	case <-time.After(200 * time.Millisecond):
-		log.Info("runtime watcher active", slog.String("target", "kubernetes.io/secrets"))
-	case <-ctx.Done():
-		return ctx.Err()
-	}
+	// 4. Log application startup metadata
+	log.Info("starting application",
+		"app", version.Name,
+		"version", version.Version,
+		"log_level", cfg.LogLevel,
+		"target_namespace", cfg.Namespace,
+	)
 
-	// Block until SIGINT / SIGTERM is received
+	// 5. Wait for shutdown signal
 	<-ctx.Done()
-	log.Info("shutdown signal received, flushing event pipeline...")
-
-	return nil
+	log.Info("shutdown signal received, exiting gracefully...")
 }
