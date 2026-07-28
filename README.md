@@ -391,7 +391,7 @@ AnchorState will include:
 Security issues should not be publicly disclosed.
 
 If you discover a vulnerability in AnchorState, please follow the responsible disclosure process described in:
-[SECURITY.md](https://github.com/abrarul-islam/CloudGuard/blob/main/SECURITY.md)
+[SECURITY.md](https://github.com/abrarul-islam/AnchorState/blob/main/SECURITY.md)
 
 Please do not disclose vulnerabilities publicly before they have been reviewed.
 
