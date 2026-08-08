@@ -409,7 +409,7 @@ Please read the project's [CONTRIBUTING](https://github.com/abrarul-islam/Anchor
 
 # License
 
-AnchorState is released under the MIT License.
+AnchorState is released under the Apache 2.0 License.
 
 See:
 [LICENSE](https://github.com/abrarul-islam/AnchorState/blob/main/LICENSE)
